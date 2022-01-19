@@ -37,8 +37,8 @@ def decrypt(ciphertext, key):
     return message
 
 
-key = "VERYSECRET"
 message = "IITJODHPUR"
+key = "VERYSECRET"
 
 cipher = encrypt(message, key)
 print("Cipher text:", cipher)
