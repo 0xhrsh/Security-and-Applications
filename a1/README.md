@@ -8,3 +8,6 @@
 - The message and key are a string of uppercase ASCII characters.
 - The message and key are of the same length.
 - The message and key are not empty.
+
+## Report
+- You can checkout the report in the (a1\REPORT.md)[a1\REPORT.md] file.
