@@ -10,4 +10,4 @@
 - The message and key are not empty.
 
 ## Report
-- You can checkout the report in the (a1\REPORT.md)[a1\REPORT.md] file.
+- You can checkout the report in the [REPORT.md](REPORT.md) file.
