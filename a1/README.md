@@ -11,3 +11,6 @@
 
 ## Report
 - You can checkout the report in the [REPORT.md](REPORT.md) file.
+
+## Bugs
+- No known bugs.
