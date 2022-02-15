@@ -183,11 +183,11 @@ def getSBoxStr(right_expanded, rkbi):
     return sbox_str
 
 
-def encrypt(pt, rkb, rk):
-    pt = permute(pt, INITIAL_PRMT, 64)
+def encrypt(plain_text, rkb, rk):
+    plain_text = permute(plain_text, INITIAL_PRMT, 64)
 
-    left = pt[0:32]
-    right = pt[32:64]
+    left = plain_text[0:32]
+    right = plain_text[32:64]
     for i in range(0, N_ROUNDS):
         right_expanded = permute(right, EXP_DBOX, 48)
 
@@ -207,10 +207,13 @@ N_ROUNDS = 16
 
 if __name__ == "__main__":
 
-    pt = "ABCD1234"
-    key = "1234ABCD"
+    plain_text = "ABCD1234"
+    key = input("Enter encryption key: ")
+    if len(key) != 8:
+        print("Key must be 8 characters long")
+        exit(1)
 
-    pt = ascii2bin(pt)
+    plain_text = ascii2bin(plain_text)
     key = ascii2bin(key)
 
     key = permute(key, KEY_PRIORITY, 56)
@@ -234,7 +237,7 @@ if __name__ == "__main__":
 
     print("Encryption")
 
-    cipher_text_binary = encrypt(pt, rkb, rk)
+    cipher_text_binary = encrypt(plain_text, rkb, rk)
     print("Cipher Text : ", bin2ascii(cipher_text_binary))
 
 
