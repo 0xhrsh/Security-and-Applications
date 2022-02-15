@@ -151,13 +151,15 @@ KEY_PRIORITY = [57, 49, 41, 33, 25, 17, 9,
                 14, 6, 61, 53, 45, 37, 29,
                 21, 13, 5, 28, 20, 12, 4]
 
-# Number of bit shifts
-SHIFT_TABLE = [1, 1, 2, 2,
-               2, 2, 2, 2,
-               1, 2, 2, 2,
-               2, 2, 2, 1]
+# Original Shift table
+# SHIFT_TABLE = [1, 1, 2, 2,
+#                2, 2, 2, 2,
+#                1, 2, 2, 2,
+#                2, 2, 2, 1]
 
-SHIFT_TABLE_NEW = [1, 1, 2, 2,
+
+# Shift table (modified)
+SHIFT_TABLE = [1, 1, 2, 2,
                2, 2, 1, 2,
                1, 2, 2, 2,
                2, 1, 2, 2]
@@ -246,8 +248,8 @@ if __name__ == "__main__":
 
     print("Decryption")
     
-    rkb_rev = rkb[::-1]
     rk_rev = rk[::-1]
+    rkb_rev = rkb[::-1]
 
     text_binary = encrypt(cipher_text_binary, rkb_rev, rk_rev)
     print("Decrypted Text:", bin2ascii(text_binary))
