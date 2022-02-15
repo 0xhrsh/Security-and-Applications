@@ -157,6 +157,11 @@ SHIFT_TABLE = [1, 1, 2, 2,
                1, 2, 2, 2,
                2, 2, 2, 1]
 
+SHIFT_TABLE_NEW = [1, 1, 2, 2,
+               2, 2, 1, 2,
+               1, 2, 2, 2,
+               2, 1, 2, 2]
+
 # Key Compression Table
 KEY_COMPRESSION = [14, 17, 11, 24, 1, 5,
                    3, 28, 15, 6, 21, 10,
@@ -178,7 +183,6 @@ def getSBoxStr(right_expanded, rkbi):
         val = SBOX[j][row][col]
         sbox_str += dec2bin(val)
 
-    # Straight D-box: After substituting rearranging the bits
     sbox_str = permute(sbox_str, PRMT, 32)
     return sbox_str
 
@@ -193,13 +197,12 @@ def encrypt(plain_text, rkb, rk):
 
         sbox_str = getSBoxStr(right_expanded, rkb[i])
 
-        # XOR left and sbox_str
         left = xor(left, sbox_str)
 
-        # Swapper
         if(i < N_ROUNDS - 1):
             left, right = right, left
-        print("Round", i+1, left, right, rk[i])
+
+        # print("Round", i+1, left, right, rk[i])
 
     return permute(left + right, FINAL_PRMT, 64)
 
@@ -221,10 +224,10 @@ if __name__ == "__main__":
     rk = []
     rkb = []
 
-    # Splitting
     left = key[0:28]
     right = key[28:56]
 
+    # SHIFT_TABLE = SHIFT_TABLE_NEW
 
     for i in range(0, N_ROUNDS):
         left = shift_left(left, SHIFT_TABLE[i])
@@ -238,7 +241,7 @@ if __name__ == "__main__":
     print("Encryption")
 
     cipher_text_binary = encrypt(plain_text, rkb, rk)
-    print("Cipher Text : ", bin2ascii(cipher_text_binary))
+    print("Cipher Text : ", cipher_text_binary)
 
 
     print("Decryption")
